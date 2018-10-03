@@ -34,6 +34,18 @@ public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
     }
 
     @Test
+    public void testInsertFirstNull() {
+        ((DoubleLinkedList<Integer>) lista1).insertFirst(null);
+        Assert.assertArrayEquals(new Integer[]{3, 2, 1}, lista1.toArray());
+    }
+
+    @Test
+    public void testInsertNull() {
+        lista1.insert(null);
+        Assert.assertArrayEquals(new Integer[]{3, 2, 1}, lista1.toArray());
+    }
+
+    @Test
     public void testInsertFirstListEmpty() {
         ((DoubleLinkedList<Integer>) lista2).insertFirst(4);
         Assert.assertArrayEquals(new Integer[]{4}, lista2.toArray());
@@ -100,5 +112,14 @@ public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
     public void testRemoveLast() {
         ((DoubleLinkedList<Integer>) lista1).removeLast();
         Assert.assertArrayEquals(new Integer[]{3, 2}, lista1.toArray());
+    }
+
+    @Test
+    public void testRemove() {
+        Assert.assertEquals(3, lista1.size());
+        lista1.remove(2);
+        lista1.remove(1);
+        Assert.assertEquals(1, lista1.size());
+
     }
 }

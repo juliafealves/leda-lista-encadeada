@@ -66,8 +66,32 @@ public class StudentLinkedListTest {
     }
 
     @Test
+    public void testRemoveNoExist() {
+        Assert.assertEquals(3, lista1.size());
+        lista1.remove(2);
+        lista1.remove(4);
+        Assert.assertEquals(2, lista1.size());
+        Assert.assertArrayEquals(new Integer[]{3, 1}, lista1.toArray());
+    }
+
+    @Test
     public void testToArray() {
         Assert.assertArrayEquals(new Integer[]{}, lista2.toArray());
         Assert.assertArrayEquals(new Integer[]{3, 2, 1}, lista1.toArray());
+    }
+
+    @Test
+    public void testHeadNext() {
+        Assert.assertEquals(2, ((SingleLinkedListImpl<Integer>)lista1).getHead().getNext().getData(), 0);
+    }
+
+    @Test
+    public void testHead() {
+        Assert.assertEquals(3, ((SingleLinkedListImpl<Integer>)lista1).getHead().getData(), 0);
+    }
+
+    @Test
+    public void testEmptyHeadNil() {
+        Assert.assertEquals("NIL", ((SingleLinkedListImpl<Integer>)lista2).getHead().toString());
     }
 }

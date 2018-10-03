@@ -5,42 +5,54 @@ import adt.linkedList.DoubleLinkedListImpl;
 
 public class QueueDoubleLinkedListImpl<T> implements Queue<T> {
 
-	protected DoubleLinkedList<T> list;
-	protected int size;
+    protected DoubleLinkedList<T> list;
+    protected int size;
 
-	public QueueDoubleLinkedListImpl(int size) {
-		this.size = size;
-		this.list = new DoubleLinkedListImpl<T>();
-	}
+    public QueueDoubleLinkedListImpl(int size) {
+        this.size = size;
+        this.list = new DoubleLinkedListImpl<>();
+    }
 
-	@Override
-	public void enqueue(T element) throws QueueOverflowException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
+    @Override
+    public void enqueue(T element) throws QueueOverflowException {
+        if (this.isFull()) {
+            throw new QueueOverflowException();
+        }
 
-	@Override
-	public T dequeue() throws QueueUnderflowException {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
+        this.list.insert(element);
+    }
 
-	@Override
-	public T head() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
+    @Override
+    public T dequeue() throws QueueUnderflowException {
+        if (this.isEmpty()) {
+            throw new QueueUnderflowException();
+        }
 
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
+        T element = this.head();
+        this.list.removeFirst();
 
-	@Override
-	public boolean isFull() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
-	}
+        return element;
+    }
+
+    @Override
+    public T head() {
+        T head = null;
+
+        if (!this.isEmpty()) {
+            head = this.list.toArray()[0];
+        }
+
+        return head;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return this.list.size() == 0;
+    }
+
+    @Override
+    public boolean isFull() {
+        return this.size == this.list.size();
+    }
 
 }
