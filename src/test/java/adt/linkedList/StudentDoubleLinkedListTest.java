@@ -10,7 +10,6 @@ public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
 
     @Before
     public void setUp() throws Exception {
-
         getImplementations();
 
         // Lista com 3 elementos.
@@ -121,5 +120,13 @@ public class StudentDoubleLinkedListTest extends StudentLinkedListTest {
         lista1.remove(1);
         Assert.assertEquals(1, lista1.size());
 
+    }
+
+    @Test
+    public void testSearch() {
+        Assert.assertTrue(2 == lista1.search(2));
+        Assert.assertNull(lista1.search(4));
+        Assert.assertNull(lista1.search(null));
+        Assert.assertFalse(3 == lista1.search(2));
     }
 }
